@@ -1,0 +1,4 @@
+vanda-theme
+===========
+
+WordPress Theme
