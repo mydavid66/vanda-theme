@@ -1,31 +1,72 @@
-			<div class="container">
-				<div class="mainfooter">
-					<div class="latestpost">
-						<a href="#"><h3>latestpost</h3></a>
-					</div>
+<!-- Le Header
+================================================== -->
+<!-- This is the logo and navigation -->
 
-					<div class="followus"><h2>follow us</h2>
-						<div class="social">
-							<a  class="facebook" href="#">
-								<span class="facebook">
-									facebook
-								</span>
-							</a>
-							<a  class="googleplus" href="#">
-								<span class="googleplus">googleplus
-								</span>
-							</a>
-							<a  class="twitter" href="#">
-								<span class="twitter">
-									twitter
-								</span>
-							</a>
-							<a  class="youtube" href="#">
-								<span class="youtube">
-									youtube
-								</span>
-							</a>
-						</div>
-					</div>
-				</div>
+	<div class="navigation">
+		<nav>
+			
+			<!-- Slap your MOBILE logo here -->
+			<a class="mobile-logo" data-toggle="collapse" data-target="#nav-collapse">
+				<span>یک تجربه</span>
+			</a>
+			
+			<!-- NAVIGATION
+			================================================== -->
+			<!-- Navigation begins here -->
+			
+			<div id="nav-collapse" class="collapse">
+				<ul class="nav">
+				
+					<!-- Slap your logo here -->
+					<li class="logo"><a>یک تجربه</a></li>
+					
+					<!-- portfolio (drop down) -->
+					<li>
+						<a href="#filter=.portfolio" class="selected"><span data-toggle="collapse" data-target="#portfolio-collapse"></span>نمونه کارها</a>
+						<ul id="portfolio-collapse" class="collapse out">
+							<?php
+							  $args = array(
+							    'type' => 'post',
+							    'orderby' => 'name',
+							    'order' => 'ASC',
+							    'hide_empty' => false
+							  );
+							  $class_name = "portfolio";
+							  $categories = get_categories($args);
+							  foreach($categories as $category) {
+							    $class_name  .= " " . $category->slug;
+							?>
+						<li><a href="#filter=.<?php echo $category->slug; ?>"><?php echo $category->name; ?></a></li>
+							<?php } ?>
+						</ul>
+					</li>
+					
+					<!-- blog -->
+					<li><a href="#filter=.blog">بلاگ</a></li>
+					
+					<!-- grid widgets -->
+					<li>
+						<a href="#filter=.grid-widget">ویدجت</a>
+					</li>
+					
+					<!-- elements
+					<li>
+						<a href="#filter=.shortcodes">المنت ها</a>
+					</li> -->
+					
+					<!-- pages (drop down) -->
+					<li>
+						<a><span data-toggle="collapse" data-target="#pages-collapse"></span>صفحات</a>
+						<ul id="pages-collapse" class="collapse out">
+							<li><a href="#filter=.page-about">درباره</a></li>
+							<li><a href="#filter=.page-team">تیم</a></li>
+							<li><a href="#filter=.page-contact">ارتباط</a></li>
+						</ul>
+					</li>
+					
+				</ul>
 			</div>
+		</nav>	 
+		<div class="nav-arrow">
+		</div>
+	</div>
