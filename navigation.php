@@ -1,37 +1,72 @@
-<div class="container">
-		<div class="menu pb10">
-			<ul>
-  			<!-- first  way <?php wp_nav_menu(); ?>-->
-			<!-- second way<?php /* Our navigation menu. If one isn't filled out, wp_nav_menu falls back to wp_page_menu. The menu assiged to the primary position is the one used. If none is assigned, the menu with the lowest ID is used. */ ?>
-			<?php wp_nav_menu( array( 'container_class' => 'menu-header', 'theme_location' => 'primary' ) ); ?>-->
-			<!-- third way <?php wp_nav_menu( array('menu' => 'Project Nav' )); ?>-->
-			<!--<?php wp_nav_menu( array( 'container' => '' ) ); ?>-->
-			<?php
+<!-- Le Header
+================================================== -->
+<!-- This is the logo and navigation -->
 
-$defaults = array(
-	'theme_location'  => '',
-	'menu'            => 'mainmenu',
-	'container'       => 'div',
-	'container_class' => '',
-	'container_id'    => '',
-	'menu_class'      => 'menu',
-	'menu_id'         => '',
-	'echo'            => true,
-	'fallback_cb'     => 'wp_page_menu',
-	'before'          => '',
-	'after'           => '',
-	'link_before'     => '',
-	'link_after'      => '',
-	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-	'depth'           => 0,
-	'walker'          => ''
-);
-
-wp_nav_menu( $defaults );
-
-?>
-		</ul>
-			<div class="badboy"></div>
+	<div class="navigation">
+		<nav>
+			
+			<!-- Slap your MOBILE logo here -->
+			<a class="mobile-logo" data-toggle="collapse" data-target="#nav-collapse">
+				<span>یک تجربه</span>
+			</a>
+			
+			<!-- NAVIGATION
+			================================================== -->
+			<!-- Navigation begins here -->
+			
+			<div id="nav-collapse" class="collapse">
+				<ul class="nav">
+				
+					<!-- Slap your logo here -->
+					<li class="logo"><a>یک تجربه</a></li>
+					
+					<!-- portfolio (drop down) -->
+					<li>
+						<a href="#filter=.portfolio" class="selected"><span data-toggle="collapse" data-target="#portfolio-collapse"></span>نمونه کارها</a>
+						<ul id="portfolio-collapse" class="collapse out">
+							<?php
+							  $args = array(
+							    'type' => 'post',
+							    'orderby' => 'name',
+							    'order' => 'ASC',
+							    'hide_empty' => false
+							  );
+							  $class_name = "portfolio";
+							  $categories = get_categories($args);
+							  foreach($categories as $category) {
+							    $class_name  .= " " . $category->slug;
+							?>
+						<li><a href="#filter=.<?php echo $category->slug; ?>"><?php echo $category->name; ?></a></li>
+							<?php } ?>
+						</ul>
+					</li>
+					
+					<!-- blog -->
+					<li><a href="#filter=.blog">بلاگ</a></li>
+					
+					<!-- grid widgets -->
+					<li>
+						<a href="#filter=.grid-widget">ویدجت</a>
+					</li>
+					
+					<!-- elements
+					<li>
+						<a href="#filter=.shortcodes">المنت ها</a>
+					</li> -->
+					
+					<!-- pages (drop down) -->
+					<li>
+						<a><span data-toggle="collapse" data-target="#pages-collapse"></span>صفحات</a>
+						<ul id="pages-collapse" class="collapse out">
+							<li><a href="#filter=.page-about">درباره</a></li>
+							<li><a href="#filter=.page-team">تیم</a></li>
+							<li><a href="#filter=.page-contact">ارتباط</a></li>
+						</ul>
+					</li>
+					
+				</ul>
+			</div>
+		</nav>	 
+		<div class="nav-arrow">
 		</div>
-		<div class="searchbox"></div>
 	</div>
