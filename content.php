@@ -1,25 +1,27 @@
 <div id="preloader-container">
 <div id="container">
-  <?php 
-  $args = array (
-      'post_type'=>'portfolio',
-      'nopaging'=>'false',
-      'order'=>'ASC'
-    );
+<?php
+
+  $args = array(
+    'post_type' => 'post',
+    'orderby' => 'title',
+    'order' => 'ASC',
+  );
+
   $query = new WP_Query($args);
 
- if($query->have_posts()){
-    while($query->have_posts()){
-      $class_name ='portfolio';
-      $query->the_post(); 
-      $types = get_the_terms($post->ID,'type');
-      if($types){
-        foreach($types as $type) {
-          $class_name .= " TX_".$type->slug;
-        }
-      }
-?>
-<div class="widget portfolio web homepage <?php echo $class_name; ?>">
+  //$categories = get_categories( $args );
+  //print_r($categories);
+if($query->have_posts()){
+  while($query->have_posts()){
+  $query->the_post();
+
+  $categories = get_the_category();
+  $class_name="portfolio";
+  foreach($categories as $category) {
+    $class_name .= " " . $category->slug;
+  }?>
+<div class="widget portfolio web homepage <?php  echo $class_name ?>">
 <div class="entry-container span4">
 <!-- Portfolio Image -->
 <?php if (has_post_thumbnail()) { ?>
@@ -42,7 +44,7 @@
 <div class="entry drop-shadow curved ">
 
 <!-- Portfolio Heading -->
-<a href="portfolio-single.html">
+<a href="<?php the_permalink() ?>">
 <?php the_title() ?>
 </a>
 </h5>
@@ -56,7 +58,7 @@
 </p>
 <div class="entry-footer">
 <ul>
-<li class="left">Ú¯Ø±Ø§ÙÛŒÚ©</li>
+<li class="left"></li>
 <li class="right no-margin"><div class="icon like"></div> 3</li>
 </ul>
 </div>
@@ -66,12 +68,9 @@
 </div>
 </div>
 </div>
-
-<?php }
+<?php } 
 }
-
-wp_reset_postdata();?>
-
+?>
 </div>
 </div>
 
