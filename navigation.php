@@ -21,7 +21,7 @@
 					
 					<!-- portfolio (drop down) -->
 					<li>
-						<a href="#filter=.portfolio" class="selected"><span data-toggle="collapse" data-target="#portfolio-collapse"></span>نمونه کارها</a>
+						<a href="#filter=.portfolio" class="selected"><span data-toggle="collapse" data-target="#portfolio-collapse"></span>دسته ها</a>
 						<ul id="portfolio-collapse" class="collapse out">
 							<?php
 							  $args = array(
@@ -43,8 +43,26 @@
 					</li>
 					
 					<!-- blog -->
-					<li><a href="#filter=.blog">بلاگ</a></li>
-					
+					<li>
+						<a href="#filter=.portfolio" class="selected"><span data-toggle="collapse" data-target="#portfolio-collapse"></span>نمونه کارها</a>
+						<ul id="portfolio-collapse" class="collapse out">
+							<?php
+						$taxonomies = array('type');
+						$args = array(
+						  'orderby' => 'name',
+						  'order' => 'ASC',
+						  'hide_empty' => True
+						);
+						$all_types = get_terms( $taxonomies, $args );?>
+						<?php foreach($all_types as $type){?>
+						<li><a href="#filter=.TX_<?php echo $type->slug ;?>"> <?php echo $type->name ;?> </a></li>
+							<?php  }?>
+
+						<!--<li><a href="#filter=.web">موبایل</a></li>-->
+						</ul>
+					</li>
+
+
 					<!-- grid widgets -->
 					<li>
 						<a href="#filter=.grid-widget">ویدجت</a>
