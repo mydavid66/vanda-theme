@@ -1,7 +1,7 @@
 /*
-Theme Name: Vanda
+Theme Name: 1them004
 Theme URI: http://webfa.ws/vanda
-Author: Vanda Group
+Author: 1them group Group
 Author URI: http://d-noori.ir/
 Description:Design by webfa group 
 Version: 0.0.1
@@ -260,18 +260,6 @@ div.box3{
 }
 div.darkgray{
 	background-color: #C9C9C9;
-}
-div.content{
-	width: 940px;
-	margin:0 auto;
-	height:200px;
-	background-color: #85BB50;
-	margin-bottom: 10px;
-	padding:20px;
-	text-align: left;
-	color:#4D5357;
-	font-size:14px;
-	font-style:italic;
 }
 div.footer{
 	width        : 1000px;
